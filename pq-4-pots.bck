@@ -1,0 +1,15 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP R_POT_Triple_Separate
+D Dual potentiometer with central detent, separate units
+K resistor variable
+F ~
+$ENDCMP
+#
+$CMP R_POT_wDetent_Dual_Separate
+D Dual potentiometer with central detent, separate units
+K resistor variable
+F ~
+$ENDCMP
+#
+#End Doc Library
