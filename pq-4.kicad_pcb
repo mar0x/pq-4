@@ -6,7 +6,7 @@
     (tracks 0)
     (zones 0)
     (modules 111)
-    (nets 76)
+    (nets 75)
   )
 
   (page A4)
@@ -164,8 +164,7 @@
   (net 71 LED)
   (net 72 "Net-(C28-Pad2)")
   (net 73 "Net-(D1-Pad1)")
-  (net 74 "Net-(R31-Pad2)")
-  (net 75 "Net-(D1-Pad2)")
+  (net 74 "Net-(D1-Pad2)")
 
   (net_class Default "This is the default net class."
     (clearance 0.2)
@@ -243,7 +242,6 @@
     (add_net "Net-(IN1-PadT)")
     (add_net "Net-(OUT1-PadT)")
     (add_net "Net-(R26-Pad1)")
-    (add_net "Net-(R31-Pad2)")
     (add_net "Net-(R56-Pad1)")
     (add_net PRES2)
     (add_net Q7-G)
@@ -755,7 +753,7 @@
     )
   )
 
-  (module Capactor_w:CP_Radial_D4.0mm_P5.08mm (layer F.Cu) (tedit 5D4ACD05) (tstamp 5D4BB991)
+  (module Capactor_w:CP_Radial_D4.0mm_P5.08mm (layer F.Cu) (tedit 5D4ACD05) (tstamp 5D586E9E)
     (at 168.91 72.39 270)
     (descr "CP, Radial series, Radial, pin pitch=2.00mm, , diameter=4mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 2.00mm  diameter 4mm Electrolytic Capacitor")
@@ -3795,7 +3793,7 @@
     (pad 1 thru_hole circle (at 0 0 90) (size 1.4 1.4) (drill 0.7) (layers *.Cu *.Mask)
       (net 12 "Net-(IC3-Pad2)"))
     (pad 2 thru_hole oval (at 5.08 0 90) (size 1.4 1.4) (drill 0.7) (layers *.Cu *.Mask)
-      (net 74 "Net-(R31-Pad2)"))
+      (net 18 A))
     (model ${KISYS3DMOD}/Resistor_THT.3dshapes/R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal.wrl
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
@@ -8967,7 +8965,7 @@
     (pad 1 thru_hole rect (at 0 0) (size 2 2) (drill 1) (layers *.Cu *.Mask)
       (net 73 "Net-(D1-Pad1)"))
     (pad 2 thru_hole oval (at 5.08 0) (size 2 2) (drill 1) (layers *.Cu *.Mask)
-      (net 75 "Net-(D1-Pad2)"))
+      (net 74 "Net-(D1-Pad2)"))
     (model ${KISYS3DMOD}/Diode_THT.3dshapes/D_T-1_P5.08mm_Horizontal.wrl
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
