@@ -1,3 +1,3 @@
 (fp_lib_table
-  (lib (name Capactor_w)(type KiCad)(uri ${KIPRJMOD}/../Capactor_w.pretty)(options "")(descr ""))
+  (lib (name Capactor_w)(type KiCad)(uri ${KIPRJMOD}/../lib/Capactor_w.pretty)(options "")(descr ""))
 )
