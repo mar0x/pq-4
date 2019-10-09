@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP DigiPot
+D Dual Digital Potentiometer, I2C interface, with encoder and LED indicator
+K R POT
+$ENDCMP
+#
+#End Doc Library

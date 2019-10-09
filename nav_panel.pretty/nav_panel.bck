@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP nav_panel
+D PQ-4 navigation panel with encoder, 2 buttons and LED indicator
+K PAN
+$ENDCMP
+#
+#End Doc Library

@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name DigiPot)(type Legacy)(uri "$(KIPRJMOD)/../DigiPot.pretty/DigiPot.lib")(options "")(descr ""))
+  (lib (name relay_omron_g6k-2)(type Legacy)(uri ${KIPRJMOD}/relay_omron_g6k-2.lib)(options "")(descr ""))
+  (lib (name nav_panel)(type Legacy)(uri "$(KIPRJMOD)/../nav_panel.pretty/nav_panel.lib")(options "")(descr ""))
+)

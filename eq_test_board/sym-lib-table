@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name pq-4-pots)(type Legacy)(uri ${KIPRJMOD}/../pq-4-pots.lib)(options "")(descr ""))
+)

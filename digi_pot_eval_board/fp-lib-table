@@ -1,0 +1,6 @@
+(fp_lib_table
+  (lib (name DigiPot)(type KiCad)(uri "$(KIPRJMOD)/../DigiPot.pretty")(options "")(descr ""))
+  (lib (name Connectors)(type KiCad)(uri "$(KIPRJMOD)/../Connectors.pretty")(options "")(descr ""))
+  (lib (name nav_panel)(type KiCad)(uri "$(KIPRJMOD)/../nav_panel.pretty")(options "")(descr ""))
+  (lib (name OLED)(type KiCad)(uri "$(KIPRJMOD)/../OLED.pretty")(options "")(descr ""))
+)
