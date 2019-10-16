@@ -72,6 +72,9 @@ namespace pin {
             micro_19 = 15,   mini_15 = micro_19,
             micro_20 = 16,   mini_16 = micro_20,
             micro_21 = 17,   mini_17 = micro_21,
+
+            pb6 = 99,
+            pb7 = 100,
         };
     }
 
@@ -141,5 +144,11 @@ struct pin_traits<18> : public base_pin_traits<port::C, 4> { };
 
 template<>
 struct pin_traits<19> : public base_pin_traits<port::C, 5> { };
+
+template<>
+struct pin_traits<pin::id::pb6> : public base_pin_traits<port::B, 6> { };
+
+template<>
+struct pin_traits<pin::id::pb7> : public base_pin_traits<port::B, 7> { };
 
 }
