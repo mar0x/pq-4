@@ -33,7 +33,7 @@ using led8 = artl::digital_out<artl::pin::id::pd5>;
 
 using a0 = artl::digital_in<artl::pin::id::pd3>;
 using a1 = artl::digital_in<artl::pin::id::pd4>;
-using a2 = artl::digital_in<artl::pin::id::pb5>;
+using a2 = artl::digital_in<artl::pin::id::pb6>;
 
 using led_update_tc = artl::tc<1>;
 
