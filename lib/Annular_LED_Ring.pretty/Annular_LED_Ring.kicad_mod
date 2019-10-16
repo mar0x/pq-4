@@ -43,5 +43,11 @@
   (pad "" np_thru_hole circle (at 20.5 -2.11) (size 2 2) (drill 2) (layers *.Cu *.Mask))
   (pad "" np_thru_hole circle (at 20 19.39) (size 1.5 1.5) (drill 1.5) (layers *.Cu *.Mask))
   (pad "" np_thru_hole circle (at -1.5 19.89) (size 2 2) (drill 2) (layers *.Cu *.Mask))
+
+  (model ${KIPRJMOD}/../lib/Annular_LED_Ring.pretty/Annular_LED_Ring.wrl
+    (at (xyz 0 0 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
 )
 
