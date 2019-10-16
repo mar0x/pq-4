@@ -3,3 +3,4 @@
 .DS_Store
 *.net
 *-cache.lib
+__pycache__
