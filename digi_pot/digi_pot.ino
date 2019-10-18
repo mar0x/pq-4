@@ -20,6 +20,7 @@ using re_a_change = artl::pin_change_int<re_a::pin>;
 using re_b_change = artl::pin_change_int<re_b::pin>;
 
 using mcp_cs = artl::digital_pin<artl::pin::id::pd1>;
+using mcp_shdn = artl::digital_pin<artl::pin::id::pd0>;
 using led = artl::digital_out<artl::pin::id::pd2>;
 
 using led1 = artl::digital_pin<artl::pin::id::pc3>;
@@ -167,6 +168,9 @@ void set_pos(uint8_t pos) {
     SPI.transfer(0x00);
     SPI.transfer(pos);
 
+    SPI.transfer(0x10);
+    SPI.transfer(pos);
+
     mcp_cs().high();
 
     led_ring.set_pos(pos);
@@ -209,6 +213,8 @@ void setup() {
     mcp_cs().output();
     mcp_cs().high();
 
+    mcp_shdn().output();
+
     led().setup();
 
     led1().input();
@@ -238,6 +244,7 @@ void setup() {
  */
 
     set_pos(my_enc.pos);
+    mcp_shdn().high();
 }
 
 void loop() {
