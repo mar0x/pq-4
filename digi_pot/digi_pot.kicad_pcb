@@ -333,9 +333,9 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
-    (model ${KIPRJMOD}/../lib/EC12E24104A6.wrl
-      (offset (xyz 15 0 0))
-      (scale (xyz 0.393 0.393 0.393))
+    (model ${KIPRJMOD}/../lib/EC12E-200.STEP
+      (offset (xyz 7.5 -2.4 2.3))
+      (scale (xyz 1 1 1))
       (rotate (xyz 0 0 90))
     )
   )
