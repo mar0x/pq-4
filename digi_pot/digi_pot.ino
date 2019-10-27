@@ -68,6 +68,15 @@ using enc = artl::encoder<enc_handler, enc_time_traits, 1>;
 enc my_enc;
 
 struct led_array {
+    enum {
+        MAX_LED_GROUP         = 4,
+        LED_GROUP_FRAME_MASK  = 0x03,
+        MAX_LED_IN_GROUP      = 4,
+
+        MODE_GAIN = 0,
+        MODE_FREQ = 1,
+        MODE_LEVEL = 2,
+    };
 
     void update(unsigned long t) {
         if (t - last_update < 1) {
@@ -76,30 +85,30 @@ struct led_array {
 
         last_update = t;
 
-        uint8_t group = (frame % 4);
+        uint8_t led_group = (frame % MAX_LED_GROUP);
 
-        group_off(group);
+        led_group_off(led_group);
 
         frame++;
 
-        group = (frame % 4);
+        led_group = (frame % MAX_LED_GROUP);
 
         if ( ((frame / 4) % brightness_a) > brightness_b ) {
             return;
         }
 
-        uint8_t group_mask = (mask >> (group * 4));
+        uint8_t group_mask = (mask >> (led_group * MAX_LED_IN_GROUP));
 
         led8().write(group_mask & 1);
         led7().write(group_mask & 2);
         led6().write(group_mask & 4);
         led5().write(group_mask & 8);
 
-        group_on(group);
+        led_group_on(led_group);
     }
 
-    static void group_off(uint8_t group) {
-        switch(group) {
+    static void led_group_off(uint8_t led_group) {
+        switch(led_group) {
         case 0: led1().input(); break;
         case 1: led2().input(); break;
         case 2: led3().input(); break;
@@ -107,8 +116,8 @@ struct led_array {
         }
     }
 
-    static void group_on(uint8_t group) {
-        switch(group) {
+    static void led_group_on(uint8_t led_group) {
+        switch(led_group) {
         case 0: led1().output(); led1().low(); break;
         case 1: led2().output(); led2().low(); break;
         case 2: led3().output(); led3().low(); break;
@@ -121,27 +130,41 @@ struct led_array {
 
         uint8_t b = pos / 17;
 
-        mask = 0;
+        switch (mode) {
+        case MODE_GAIN:
+            mask = 0;
 
-        if (b > 7) {
-            for (uint8_t i = 7; i <= b; i++) {
+            if (b > 7) {
+                for (uint8_t i = 7; i <= b; i++) {
+                    mask |= 1 << i;
+                }
+            } else {
+                for (uint8_t i = b; i <= 7; i++) {
+                    mask |= 1 << i;
+                }
+            }
+            break;
+
+        case MODE_FREQ:
+            mask = 1 << b;
+            break;
+
+        case MODE_LEVEL:
+            mask = 0;
+
+            for (uint8_t i = 0; i <= b; i++) {
                 mask |= 1 << i;
             }
-        } else {
-            for (uint8_t i = b; i <= 7; i++) {
-                mask |= 1 << i;
-            }
+            break;
         }
 
-        // mask = 1 << (pos / 17);
-
-        if (high) {
+        if (hlight) {
             mask |= 0x8000;
         }
     }
 
     void highlight(bool h) {
-        high = h;
+        hlight = h;
 
         brightness_a = h ? 1 : 2;
 
@@ -157,7 +180,8 @@ struct led_array {
     uint8_t brightness_a = 2;
     uint8_t brightness_b = 0;
     uint8_t frame = 0;
-    bool high = false;
+    uint8_t mode = MODE_GAIN;
+    bool hlight = false;
 };
 
 led_array led_ring;
