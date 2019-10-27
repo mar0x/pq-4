@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:digi_pot_eval_board-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -1171,4 +1172,113 @@ F 3 "" H 2850 2600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2850 2500 2850 2600
+Text GLabel 1300 5300 0    50   Input ~ 0
+MIN5
+Text GLabel 2000 5300 3    50   Input ~ 0
+MIN4
+Wire Wire Line
+	1300 5300 1400 5300
+Connection ~ 1400 5300
+Text GLabel 4800 5500 3    50   Input ~ 0
+MOUT5
+Text GLabel 5400 5500 3    50   Input ~ 0
+MOUT4
+Wire Wire Line
+	4800 5500 4800 5400
+Connection ~ 4800 5400
+Wire Wire Line
+	5400 5500 5400 5400
+Connection ~ 5400 5400
+$Comp
+L Connector:Conn_01x02_Male J11
+U 1 1 5DB1A299
+P 1600 6100
+F 0 "J11" H 1706 6278 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 1706 6187 50  0000 C CNN
+F 2 "Connector_JST:JST_EH_B02B-EH-A_1x02_P2.50mm_Vertical" H 1600 6100 50  0001 C CNN
+F 3 "~" H 1600 6100 50  0001 C CNN
+	1    1600 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x03_Male J12
+U 1 1 5DB1A3AD
+P 4900 6300
+F 0 "J12" H 5006 6578 50  0000 C CNN
+F 1 "Conn_01x03_Male" H 5006 6487 50  0000 C CNN
+F 2 "Connector_JST:JST_EH_B03B-EH-A_1x03_P2.50mm_Vertical" H 4900 6300 50  0001 C CNN
+F 3 "~" H 4900 6300 50  0001 C CNN
+	1    4900 6300
+	1    0    0    -1  
+$EndComp
+Text GLabel 6300 4050 2    50   Input ~ 0
+MOSI
+Text GLabel 6300 4150 2    50   Input ~ 0
+MISO
+Text GLabel 6300 4250 2    50   Input ~ 0
+SCK
+$Comp
+L Connector:Conn_01x06_Male J13
+U 1 1 5DB1DFAE
+P 6100 4250
+F 0 "J13" H 6206 4628 50  0000 C CNN
+F 1 "Conn_01x06_Male" H 6206 4537 50  0000 C CNN
+F 2 "Connector_JST:JST_EH_B06B-EH-A_1x06_P2.50mm_Vertical" H 6100 4250 50  0001 C CNN
+F 3 "~" H 6100 4250 50  0001 C CNN
+	1    6100 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0180
+U 1 1 5DB1E025
+P 6800 4350
+F 0 "#PWR0180" H 6800 4200 50  0001 C CNN
+F 1 "+5V" H 6815 4523 50  0000 C CNN
+F 2 "" H 6800 4350 50  0001 C CNN
+F 3 "" H 6800 4350 50  0001 C CNN
+	1    6800 4350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0181
+U 1 1 5DB1E084
+P 6800 4600
+F 0 "#PWR0181" H 6800 4350 50  0001 C CNN
+F 1 "GND" H 6805 4427 50  0000 C CNN
+F 2 "" H 6800 4600 50  0001 C CNN
+F 3 "" H 6800 4600 50  0001 C CNN
+	1    6800 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 4550 6800 4550
+Wire Wire Line
+	6800 4550 6800 4600
+Wire Wire Line
+	6800 4350 6800 4450
+Wire Wire Line
+	6800 4450 6300 4450
+$Comp
+L power:GND #PWR0182
+U 1 1 5DB24EBB
+P 5550 6450
+F 0 "#PWR0182" H 5550 6200 50  0001 C CNN
+F 1 "GND" H 5555 6277 50  0000 C CNN
+F 2 "" H 5550 6450 50  0001 C CNN
+F 3 "" H 5550 6450 50  0001 C CNN
+	1    5550 6450
+	1    0    0    -1  
+$EndComp
+Text GLabel 5100 6200 2    50   Input ~ 0
+MOUT5
+Text GLabel 5100 6400 2    50   Input ~ 0
+MOUT4
+Wire Wire Line
+	5100 6300 5550 6300
+Wire Wire Line
+	5550 6300 5550 6450
+Text GLabel 1800 6100 2    50   Input ~ 0
+MIN5
+Text GLabel 1800 6200 2    50   Input ~ 0
+MIN4
 $EndSCHEMATC
