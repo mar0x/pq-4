@@ -1,0 +1,103 @@
+
+- B027BK, Корпус для РЭА 171x121x55мм, металл, черный
+  x1
+  C&D # 5584887
+  B027BK
+  https://www.chipdip.ru/product/b027bk
+  2019.10.31
+
+- 41010-2, D14мм, отв. 6мм, Ручка металлическая (пластмассовая вставка)
+  x6
+  C&D # 36707
+  41010-2
+  https://www.chipdip.ru/product/knobs-41010-2
+  2019.10.17
+
+- 41010-4, D18.8мм, отв. 6мм, Ручка металлическая (пластмассовая вставка)
+  x1
+  C&D # 53619
+  41010-4
+  https://www.chipdip.ru/product/knobs-41010-4
+  2019.10.17
+
+- 41010-3, D16.7мм, отв. 6мм, Ручка металлическая (пластмассовая вставка)
+  x1
+  C&D # 56498
+  41010-3
+  https://www.chipdip.ru/product/knobs-41010-3
+  2019.10.17
+
+- ATmega32U4-AU, Микроконтроллер 8-Бит, AVR, 16МГц, 32КБ Flash, с USB контроллером [TQFP-44]
+  x1
+  C&D # 9000103730
+  ATmega32U4-AU
+  https://www.chipdip.ru/product/atmega32u4-au
+  2019.09.27
+
+- EC12E24104A6 - encoder Alps
+  x7
+  C&D # 8194703861
+  EC12E24104A6
+  https://www.chipdip.ru/product/ec12e24104a6-encoder-vertical-12mm-24ppr
+  2019.03.19  # 4463852
+
+- EC11E - инкрементальный энкодер с резьбой под гайку. Имеет встроенный кнопочный выключатель.
+  x1
+  RoboShop
+  https://roboshop.spb.ru/EC11E
+  2019.05.16 # 110349
+
+- 1.3" Annular LED Ring Display Green Bars & Red Dot
+  x7
+  ebay, babaoshop
+  https://www.ebay.com/itm/1-3-Annular-LED-Ring-Display-Green-Bars-Red-Dot-Rotary-Encoder-or-Clock/251437248842
+  2019.02.08
+
+- IIC / I2C 2004 20x4 OLED Module Display - For Arduino / PIC / AVR / ARM
+  x1
+  ebay, wide.hk
+  https://www.ebay.com/itm/IIC-I2C-2004-20x4-OLED-Module-Display-For-Arduino-PIC-AVR-ARM/162156498430
+  2019.02.11
+
+- 1602 OLED SPI green
+  x1
+  aliexpress, HongKongTS Store
+  https://ru.aliexpress.com/item/32833284534.html
+  2019.10.21
+
+- MCP4251-503E/ST - IC DGTL POT DL 50K 2CH 14-TSSOP
+  x6
+  eicom.ru, http://datasheet.eicom.ru/E/en532025.pdf
+  https://eicom.ru/product/MCP4251-503E/ST/
+  2019.09.19
+
+- MCP4251-103E/ST - IC POT DGTL DUAL 10K SPI 14TSSOP
+  x1
+  eicom.ru, http://datasheet.eicom.ru/E/en532025.pdf
+  https://eicom.ru/product/MCP4251-103E/ST/
+  2019.09.19
+
+- ATMEGA328P-AU - IC MCU 8BIT 32KB FLASH 32TQFP
+  x7
+  eicom.ru
+  https://eicom.ru/product/ATMEGA328P-AU/
+  2019.09.19
+
+- 0.125Вт 0805 10 кОм, 1%, Чип резистор (SMD)
+  x40
+  C&D # 9000079514
+  RC0805FR-0710KL
+  https://www.chipdip.ru/product0/9000079514
+
+- 0.125Вт 0805 220 Ом, 1%, Чип резистор (SMD)
+  x40
+  C&D # 9000079470
+  RC0805FR-07220RL
+  https://www.chipdip.ru/product0/9000079470
+
+- G6K2FYTR5DC (OMRON-IA) 2C DPDT, сигнальное реле
+  x5
+  TerraElectronica # 322403
+  https://www.terraelectronica.ru/product/322403
+  2019.09.25 # 06664997
+
