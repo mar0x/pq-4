@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:socket_board-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -139,12 +140,12 @@ $EndComp
 $Comp
 L Connector:Conn_01x05_Male J8
 U 1 1 5DB64BED
-P 7550 2400
-F 0 "J8" H 7523 2423 50  0000 R CNN
-F 1 "Conn_01x05_Male" H 7523 2332 50  0000 R CNN
-F 2 "Connector_JST:JST_EH_B05B-EH-A_1x05_P2.50mm_Vertical" H 7550 2400 50  0001 C CNN
-F 3 "~" H 7550 2400 50  0001 C CNN
-	1    7550 2400
+P 7550 2600
+F 0 "J8" H 7523 2623 50  0000 R CNN
+F 1 "Conn_01x05_Male" H 7523 2532 50  0000 R CNN
+F 2 "Connector_JST:JST_EH_B05B-EH-A_1x05_P2.50mm_Vertical" H 7550 2600 50  0001 C CNN
+F 3 "~" H 7550 2600 50  0001 C CNN
+	1    7550 2600
 	-1   0    0    -1  
 $EndComp
 Text GLabel 2150 1750 2    50   Input ~ 0
@@ -159,9 +160,9 @@ Text GLabel 2200 3300 2    50   Input ~ 0
 OUT_S
 Text GLabel 2200 3400 2    50   Input ~ 0
 OUT_T
-Text GLabel 7350 2200 0    50   Input ~ 0
+Text GLabel 7350 2700 0    50   Input ~ 0
 MIN_5
-Text GLabel 7350 2300 0    50   Input ~ 0
+Text GLabel 7350 2800 0    50   Input ~ 0
 MIN_4
 Text GLabel 7350 2500 0    50   Input ~ 0
 MOUT_2
