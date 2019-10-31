@@ -639,12 +639,12 @@ Wire Wire Line
 $Comp
 L Connector:Barrel_Jack_Switch J4
 U 1 1 5D90FDCF
-P 1300 1200
-F 0 "J4" H 1355 1517 50  0000 C CNN
-F 1 "DS-210" H 1150 1450 50  0000 C CNN
-F 2 "Connector_BarrelJack:BarrelJack_Wuerth_6941xx301002" H 1350 1160 50  0001 C CNN
-F 3 "~" H 1350 1160 50  0001 C CNN
-	1    1300 1200
+P 900 1200
+F 0 "J4" H 955 1517 50  0000 C CNN
+F 1 "DS-210" H 750 1450 50  0000 C CNN
+F 2 "" H 950 1160 50  0001 C CNN
+F 3 "~" H 950 1160 50  0001 C CNN
+	1    900  1200
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -698,7 +698,7 @@ U 1 1 5D9165C5
 P 5100 5300
 F 0 "J6" H 5100 4933 50  0000 C CNN
 F 1 "DIN-5-OOTDTY" H 5100 5024 50  0000 C CNN
-F 2 "Connectors:DIN5MIDI-OOTDTY" H 5100 5300 50  0001 C CNN
+F 2 "" H 5100 5300 50  0001 C CNN
 F 3 "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf" H 5100 5300 50  0001 C CNN
 	1    5100 5300
 	-1   0    0    1   
@@ -709,7 +709,7 @@ U 1 1 5D91679D
 P 1700 5200
 F 0 "J5" H 1700 4833 50  0000 C CNN
 F 1 "DIN-5-OOTDTY" H 1700 4924 50  0000 C CNN
-F 2 "Connectors:DIN5MIDI-OOTDTY" H 1700 5200 50  0001 C CNN
+F 2 "" H 1700 5200 50  0001 C CNN
 F 3 "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf" H 1700 5200 50  0001 C CNN
 	1    1700 5200
 	-1   0    0    1   
@@ -1189,28 +1189,6 @@ Connection ~ 4800 5400
 Wire Wire Line
 	5400 5500 5400 5400
 Connection ~ 5400 5400
-$Comp
-L Connector:Conn_01x02_Male J11
-U 1 1 5DB1A299
-P 1600 6100
-F 0 "J11" H 1706 6278 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 1706 6187 50  0000 C CNN
-F 2 "Connector_JST:JST_EH_B02B-EH-A_1x02_P2.50mm_Vertical" H 1600 6100 50  0001 C CNN
-F 3 "~" H 1600 6100 50  0001 C CNN
-	1    1600 6100
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector:Conn_01x03_Male J12
-U 1 1 5DB1A3AD
-P 4900 6300
-F 0 "J12" H 5006 6578 50  0000 C CNN
-F 1 "Conn_01x03_Male" H 5006 6487 50  0000 C CNN
-F 2 "Connector_JST:JST_EH_B03B-EH-A_1x03_P2.50mm_Vertical" H 4900 6300 50  0001 C CNN
-F 3 "~" H 4900 6300 50  0001 C CNN
-	1    4900 6300
-	1    0    0    -1  
-$EndComp
 Text GLabel 6300 4050 2    50   Input ~ 0
 MOSI
 Text GLabel 6300 4150 2    50   Input ~ 0
@@ -1258,27 +1236,61 @@ Wire Wire Line
 	6800 4350 6800 4450
 Wire Wire Line
 	6800 4450 6300 4450
+Text GLabel 1550 1100 0    50   Input ~ 0
+POW1
+Wire Wire Line
+	1550 1100 1600 1100
+Text GLabel 1550 1300 0    50   Input ~ 0
+POW2
+Wire Wire Line
+	1550 1300 1600 1300
 $Comp
-L power:GND #PWR0182
-U 1 1 5DB24EBB
-P 5550 6450
-F 0 "#PWR0182" H 5550 6200 50  0001 C CNN
-F 1 "GND" H 5555 6277 50  0000 C CNN
-F 2 "" H 5550 6450 50  0001 C CNN
-F 3 "" H 5550 6450 50  0001 C CNN
-	1    5550 6450
+L Connector:Conn_01x02_Male J10
+U 1 1 5DB811AD
+P 3650 1100
+F 0 "J10" H 3756 1278 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 3756 1187 50  0000 C CNN
+F 2 "Connector_JST:JST_EH_B02B-EH-A_1x02_P2.50mm_Vertical" H 3650 1100 50  0001 C CNN
+F 3 "~" H 3650 1100 50  0001 C CNN
+	1    3650 1100
+	-1   0    0    -1  
+$EndComp
+Text GLabel 3450 1100 0    50   Input ~ 0
+POW1
+Text GLabel 3450 1200 0    50   Input ~ 0
+POW2
+$Comp
+L Connector:Conn_01x05_Male J9
+U 1 1 5DB82855
+P 2700 6750
+F 0 "J9" H 2806 7128 50  0000 C CNN
+F 1 "Conn_01x05_Male" H 2806 7037 50  0000 C CNN
+F 2 "Connector_JST:JST_EH_B05B-EH-A_1x05_P2.50mm_Vertical" H 2700 6750 50  0001 C CNN
+F 3 "~" H 2700 6750 50  0001 C CNN
+	1    2700 6750
 	1    0    0    -1  
 $EndComp
-Text GLabel 5100 6200 2    50   Input ~ 0
-MOUT5
-Text GLabel 5100 6400 2    50   Input ~ 0
-MOUT4
-Wire Wire Line
-	5100 6300 5550 6300
-Wire Wire Line
-	5550 6300 5550 6450
-Text GLabel 1800 6100 2    50   Input ~ 0
+Text GLabel 2900 6850 2    50   Input ~ 0
 MIN5
-Text GLabel 1800 6200 2    50   Input ~ 0
+Text GLabel 2900 6950 2    50   Input ~ 0
 MIN4
+Text GLabel 2900 6550 2    50   Input ~ 0
+MOUT5
+Text GLabel 2900 6750 2    50   Input ~ 0
+MOUT4
+$Comp
+L power:GND #PWR0182
+U 1 1 5DB82A46
+P 3400 6700
+F 0 "#PWR0182" H 3400 6450 50  0001 C CNN
+F 1 "GND" H 3405 6527 50  0000 C CNN
+F 2 "" H 3400 6700 50  0001 C CNN
+F 3 "" H 3400 6700 50  0001 C CNN
+	1    3400 6700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2900 6650 3400 6650
+Wire Wire Line
+	3400 6650 3400 6700
 $EndSCHEMATC

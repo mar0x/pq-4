@@ -1106,7 +1106,7 @@ U 1 1 5DA17329
 P 10100 1550
 F 0 "PAN1" H 9850 1900 50  0000 C CNN
 F 1 "nav_panel" H 10350 1900 50  0000 C CNN
-F 2 "nav_panel:nav_panel_THT" H 10100 1650 50  0001 C CNN
+F 2 "nav_panel:nav_panel_SMD" H 10100 1650 50  0001 C CNN
 F 3 "" H 10100 1650 50  0001 C CNN
 	1    10100 1550
 	1    0    0    -1  
@@ -1171,26 +1171,4 @@ Wire Wire Line
 	4300 1400 4300 1500
 Wire Wire Line
 	4300 1800 4300 1900
-$Comp
-L Connector:AudioJack3 J9
-U 1 1 5DA7B145
-P 10250 3600
-F 0 "J9" H 10230 3925 50  0000 C CNN
-F 1 "AudioJack3" H 10230 3834 50  0000 C CNN
-F 2 "Connectors:phone-jack-6.3" H 10250 3600 50  0001 C CNN
-F 3 "~" H 10250 3600 50  0001 C CNN
-	1    10250 3600
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector:AudioJack3 J10
-U 1 1 5DB2E39C
-P 10250 4250
-F 0 "J10" H 10230 4575 50  0000 C CNN
-F 1 "AudioJack3" H 10230 4484 50  0000 C CNN
-F 2 "Connectors:phone-jack-6.3" H 10250 4250 50  0001 C CNN
-F 3 "~" H 10250 4250 50  0001 C CNN
-	1    10250 4250
-	1    0    0    -1  
-$EndComp
 $EndSCHEMATC
