@@ -1,3 +1,4 @@
 (fp_lib_table
   (lib (name nav_panel)(type KiCad)(uri "$(KIPRJMOD)/../lib/nav_panel.pretty")(options "")(descr ""))
+  (lib (name DigiPot)(type KiCad)(uri /Volumes/data/home/max_romanov/projects/pq-4/lib/DigiPot.pretty)(options "")(descr ""))
 )

@@ -357,18 +357,6 @@ PW0
 Text GLabel 3450 6250 0    50   Input ~ 0
 PW1
 $Comp
-L relay_omron_g6k-2:G6K-2 K7
-U 1 1 5D8C5BA8
-P 5850 5750
-F 0 "K7" H 6480 5796 50  0000 L CNN
-F 1 "G6K2FYTR5DC" H 6480 5705 50  0000 L CNN
-F 2 "Relay_SMD:Relay_DPDT_Omron_G6K-2F-Y" H 6300 5650 50  0001 C CNN
-F 3 "http://cdn-reichelt.de/documents/datenblatt/C300/G6H%23OMR.pdf" H 6500 5900 50  0001 C CNN
-F 4 "BYPASS" H 5850 5750 50  0001 C CNN "Label"
-	1    5850 5750
-	0    -1   1    0   
-$EndComp
-$Comp
 L Transistor_Array:ULN2003A U8
 U 1 1 5D8C63E3
 P 8550 5400
@@ -406,12 +394,12 @@ Wire Wire Line
 $Comp
 L power:+5V #PWR0126
 U 1 1 5D8CDA36
-P 5500 5300
-F 0 "#PWR0126" H 5500 5150 50  0001 C CNN
-F 1 "+5V" H 5515 5473 50  0000 C CNN
-F 2 "" H 5500 5300 50  0001 C CNN
-F 3 "" H 5500 5300 50  0001 C CNN
-	1    5500 5300
+P 7000 5600
+F 0 "#PWR0126" H 7000 5450 50  0001 C CNN
+F 1 "+5V" H 7015 5773 50  0000 C CNN
+F 2 "" H 7000 5600 50  0001 C CNN
+F 3 "" H 7000 5600 50  0001 C CNN
+	1    7000 5600
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -478,11 +466,7 @@ Text GLabel 3100 5300 1    50   Input ~ 0
 KHW_SINK
 Text GLabel 5100 5300 1    50   Input ~ 0
 KLW_SINK
-Wire Wire Line
-	5500 5300 5500 5350
-Wire Wire Line
-	5500 5350 5550 5350
-Text GLabel 6200 5300 1    50   Input ~ 0
+Text GLabel 6950 5750 2    50   Input ~ 0
 KBP_SINK
 Text GLabel 8950 5600 2    50   Input ~ 0
 KMW_SINK
@@ -494,54 +478,6 @@ Text GLabel 8950 5300 2    50   Input ~ 0
 KLW_SINK
 Text GLabel 8950 5200 2    50   Input ~ 0
 KBP_SINK
-$Comp
-L Switch:SW_Push SW3
-U 1 1 5D8D0066
-P 10250 2450
-F 0 "SW3" H 10250 2735 50  0000 C CNN
-F 1 "SW_Push" H 10250 2644 50  0000 C CNN
-F 2 "Button_Switch_SMD:SW_SPST_B3S-1000" H 10250 2650 50  0001 C CNN
-F 3 "" H 10250 2650 50  0001 C CNN
-	1    10250 2450
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0131
-U 1 1 5D8D006C
-P 10500 2350
-F 0 "#PWR0131" H 10500 2200 50  0001 C CNN
-F 1 "+5V" H 10515 2523 50  0000 C CNN
-F 2 "" H 10500 2350 50  0001 C CNN
-F 3 "" H 10500 2350 50  0001 C CNN
-	1    10500 2350
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R6
-U 1 1 5D8D0072
-P 10050 2600
-F 0 "R6" H 10120 2646 50  0000 L CNN
-F 1 "10k" V 10050 2600 39  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 9980 2600 50  0001 C CNN
-F 3 "~" H 10050 2600 50  0001 C CNN
-	1    10050 2600
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0132
-U 1 1 5D8D0078
-P 10050 2750
-F 0 "#PWR0132" H 10050 2500 50  0001 C CNN
-F 1 "GND" H 9900 2650 50  0000 C CNN
-F 2 "" H 10050 2750 50  0001 C CNN
-F 3 "" H 10050 2750 50  0001 C CNN
-	1    10050 2750
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	10450 2450 10500 2450
-Wire Wire Line
-	10500 2450 10500 2350
 $Comp
 L Connector:Conn_01x10_Male J2
 U 1 1 5D8D0469
@@ -693,11 +629,6 @@ Text GLabel 10600 1400 2    50   Input ~ 0
 SW_LEFT
 Text GLabel 10600 1500 2    50   Input ~ 0
 SW_RIGHT
-Text GLabel 9950 2450 0    50   Input ~ 0
-SW_PASSBACK
-Wire Wire Line
-	9950 2450 10050 2450
-Connection ~ 10050 2450
 Text GLabel 10600 1650 2    50   Input ~ 0
 SW_STORE
 Text GLabel 9600 1500 0    50   Input ~ 0
@@ -730,10 +661,6 @@ Wire Wire Line
 	4050 5350 4100 5350
 Wire Wire Line
 	4100 5350 4100 5300
-Wire Wire Line
-	6150 5350 6200 5350
-Wire Wire Line
-	6200 5350 6200 5300
 Text GLabel 1650 2250 0    50   Input ~ 0
 CHG
 Text GLabel 1650 4350 0    50   Input ~ 0
@@ -1171,4 +1098,21 @@ Wire Wire Line
 	4300 1400 4300 1500
 Wire Wire Line
 	4300 1800 4300 1900
+$Comp
+L Connector:Conn_01x02_Male J4
+U 1 1 5DCB7D5F
+P 6450 5650
+F 0 "J4" H 6556 5828 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 6556 5737 50  0000 C CNN
+F 2 "Connector_JST:JST_EH_B02B-EH-A_1x02_P2.50mm_Vertical" H 6450 5650 50  0001 C CNN
+F 3 "~" H 6450 5650 50  0001 C CNN
+	1    6450 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6650 5650 7000 5650
+Wire Wire Line
+	7000 5650 7000 5600
+Wire Wire Line
+	6650 5750 6950 5750
 $EndSCHEMATC

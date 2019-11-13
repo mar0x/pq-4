@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 24)
+    (drawings 25)
     (tracks 371)
     (zones 0)
     (modules 22)
@@ -1158,6 +1158,18 @@
     )
   )
 
+  (dimension 29.997411 (width 0.2) (layer F.Fab)
+    (gr_text "29.997 mm" (at 171.209905 92.680073 89.95148538) (layer F.Fab) (tstamp 5DC1B146)
+      (effects (font (size 1 1) (thickness 0.2)))
+    )
+    (feature1 (pts (xy 161.544 107.6706) (xy 170.383627 107.678085)))
+    (feature2 (pts (xy 161.5694 77.6732) (xy 170.409027 77.680685)))
+    (crossbar (pts (xy 169.822606 77.680188) (xy 169.797206 107.677588)))
+    (arrow1a (pts (xy 169.797206 107.677588) (xy 169.211739 106.550588)))
+    (arrow1b (pts (xy 169.797206 107.677588) (xy 170.38458 106.551581)))
+    (arrow2a (pts (xy 169.822606 77.680188) (xy 169.235232 78.806195)))
+    (arrow2b (pts (xy 169.822606 77.680188) (xy 170.408073 78.807188)))
+  )
   (gr_text 2019.09.23 (at 141.478 105.918) (layer B.SilkS)
     (effects (font (size 0.6 0.6) (thickness 0.1)) (justify mirror))
   )
@@ -1209,7 +1221,7 @@
   (gr_line (start 133.6 105.667) (end 133.6 79.667) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 161.6 107.667) (end 135.6 107.667) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 163.6 79.667) (end 163.6 105.667) (layer Edge.Cuts) (width 0.15))
-  (gr_line (start 135.6 77.667) (end 161.6 77.667) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 135.6 77.667) (end 161.6 77.667) (layer Edge.Cuts) (width 0.15) (tstamp 5DC0274C))
 
   (via (at 141.224 103.378) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 5))
   (segment (start 150.105 102.4562) (end 149.8584 102.2096) (width 0.25) (layer B.Cu) (net 5))
