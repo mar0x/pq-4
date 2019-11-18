@@ -1090,9 +1090,9 @@ Connection ~ 4800 5400
 Wire Wire Line
 	5400 5500 5400 5400
 Connection ~ 5400 5400
-Text GLabel 6300 4050 2    50   Input ~ 0
+Text GLabel 6300 4450 2    50   Input ~ 0
 MOSI
-Text GLabel 6300 4150 2    50   Input ~ 0
+Text GLabel 6300 4350 2    50   Input ~ 0
 MISO
 Text GLabel 6300 4250 2    50   Input ~ 0
 SCK
@@ -1110,38 +1110,30 @@ $EndComp
 $Comp
 L power:+5V #PWR0180
 U 1 1 5DB1E025
-P 6800 4350
-F 0 "#PWR0180" H 6800 4200 50  0001 C CNN
-F 1 "+5V" H 6815 4523 50  0000 C CNN
-F 2 "" H 6800 4350 50  0001 C CNN
-F 3 "" H 6800 4350 50  0001 C CNN
-	1    6800 4350
+P 6800 4150
+F 0 "#PWR0180" H 6800 4000 50  0001 C CNN
+F 1 "+5V" H 6815 4323 50  0000 C CNN
+F 2 "" H 6800 4150 50  0001 C CNN
+F 3 "" H 6800 4150 50  0001 C CNN
+	1    6800 4150
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0181
 U 1 1 5DB1E084
-P 6800 4600
-F 0 "#PWR0181" H 6800 4350 50  0001 C CNN
-F 1 "GND" H 6805 4427 50  0000 C CNN
-F 2 "" H 6800 4600 50  0001 C CNN
-F 3 "" H 6800 4600 50  0001 C CNN
-	1    6800 4600
-	1    0    0    -1  
+P 6650 4000
+F 0 "#PWR0181" H 6650 3750 50  0001 C CNN
+F 1 "GND" H 6655 3827 50  0000 C CNN
+F 2 "" H 6650 4000 50  0001 C CNN
+F 3 "" H 6650 4000 50  0001 C CNN
+	1    6650 4000
+	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	6300 4550 6800 4550
-Wire Wire Line
-	6800 4550 6800 4600
-Wire Wire Line
-	6800 4350 6800 4450
-Wire Wire Line
-	6800 4450 6300 4450
-Text GLabel 1550 1100 0    50   Input ~ 0
+Text GLabel 1550 1300 0    50   Input ~ 0
 POW1
 Wire Wire Line
 	1550 1100 1600 1100
-Text GLabel 1550 1300 0    50   Input ~ 0
+Text GLabel 1550 1100 0    50   Input ~ 0
 POW2
 Wire Wire Line
 	1550 1300 1600 1300
@@ -1262,10 +1254,8 @@ F 1 "Jumper_NC_Small" H 6300 6171 50  0001 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 6300 6050 50  0001 C CNN
 F 3 "~" H 6300 6050 50  0001 C CNN
 	1    6300 6050
-	0    -1   -1   0   
+	0    -1   1    0   
 $EndComp
-Wire Wire Line
-	6500 5950 6300 5950
 $Comp
 L Device:Jumper_NC_Small JP3
 U 1 1 5DD4CA92
@@ -1288,11 +1278,8 @@ BYP_L+
 Connection ~ 7050 5650
 Wire Wire Line
 	7050 5650 7300 5650
-Connection ~ 6300 5950
 Text GLabel 6200 5950 0    50   Input ~ 0
 BYP_L-
-Wire Wire Line
-	6200 5950 6300 5950
 Wire Wire Line
 	6250 6150 6300 6150
 $Comp
@@ -1345,13 +1332,13 @@ BYP_L-
 $Comp
 L Connector:Conn_01x02_Male J7
 U 1 1 5DCA85C1
-P 4600 1100
-F 0 "J7" H 4706 1278 50  0000 C CNN
-F 1 "Conn_01x02_Male" H 4706 1187 50  0000 C CNN
-F 2 "Connector_JST:JST_EH_B02B-EH-A_1x02_P2.50mm_Vertical" H 4600 1100 50  0001 C CNN
-F 3 "~" H 4600 1100 50  0001 C CNN
-	1    4600 1100
-	-1   0    0    -1  
+P 4600 1200
+F 0 "J7" H 4706 1378 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 4706 1287 50  0000 C CNN
+F 2 "Connector_JST:JST_EH_B02B-EH-A_1x02_P2.50mm_Vertical" H 4600 1200 50  0001 C CNN
+F 3 "~" H 4600 1200 50  0001 C CNN
+	1    4600 1200
+	-1   0    0    1   
 $EndComp
 $Comp
 L power:+9V #PWR0118
@@ -1395,10 +1382,10 @@ F 3 " ~" H 1250 3700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0183
 U 1 1 5DCDA9CD
 P 5500 6850
-F 0 "#PWR?" H 5500 6600 50  0001 C CNN
+F 0 "#PWR0183" H 5500 6600 50  0001 C CNN
 F 1 "GND" H 5505 6677 50  0000 C CNN
 F 2 "" H 5500 6850 50  0001 C CNN
 F 3 "" H 5500 6850 50  0001 C CNN
@@ -1411,4 +1398,60 @@ Wire Wire Line
 	2900 6850 3350 6850
 Wire Wire Line
 	3350 6850 3350 6950
+Wire Wire Line
+	6200 5950 6300 5950
+Connection ~ 6300 5950
+Wire Wire Line
+	6300 5950 6500 5950
+Wire Wire Line
+	6300 4050 6650 4050
+Wire Wire Line
+	6650 4050 6650 4000
+Wire Wire Line
+	6300 4150 6800 4150
+Text GLabel 6300 4550 2    50   Input ~ 0
+D_CS
+Text GLabel 9500 2700 2    50   Input ~ 0
+D_CS
+$Comp
+L Connector:Conn_01x02_Male J14
+U 1 1 5DD42436
+P 5700 1200
+F 0 "J14" H 5806 1378 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 5806 1287 50  0000 C CNN
+F 2 "Connector_JST:JST_EH_B02B-EH-A_1x02_P2.50mm_Vertical" H 5700 1200 50  0001 C CNN
+F 3 "~" H 5700 1200 50  0001 C CNN
+	1    5700 1200
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR0184
+U 1 1 5DD4255E
+P 5200 1250
+F 0 "#PWR0184" H 5200 1000 50  0001 C CNN
+F 1 "GND" H 5205 1077 50  0000 C CNN
+F 2 "" H 5200 1250 50  0001 C CNN
+F 3 "" H 5200 1250 50  0001 C CNN
+	1    5200 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0185
+U 1 1 5DD425C9
+P 5200 1050
+F 0 "#PWR0185" H 5200 900 50  0001 C CNN
+F 1 "+5V" H 5215 1223 50  0000 C CNN
+F 2 "" H 5200 1050 50  0001 C CNN
+F 3 "" H 5200 1050 50  0001 C CNN
+	1    5200 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5200 1050 5200 1100
+Wire Wire Line
+	5200 1100 5500 1100
+Wire Wire Line
+	5500 1200 5200 1200
+Wire Wire Line
+	5200 1200 5200 1250
 $EndSCHEMATC
