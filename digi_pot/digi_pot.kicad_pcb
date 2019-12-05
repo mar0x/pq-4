@@ -188,7 +188,7 @@
     (add_net GND)
   )
 
-  (module Annular_LED_Ring:Annular_LED_Ring (layer F.Cu) (tedit 5A64F4AE) (tstamp 5D8834B6)
+  (module Annular_LED_Ring:Annular_LED_Ring (layer F.Cu) (tedit 5DE97C44) (tstamp 5D8834B6)
     (at 139.6984 102.2096 90)
     (descr "Annular LED ring display green bars and red dot")
     (tags "LED ring")
@@ -196,7 +196,7 @@
     (fp_text reference J1 (at 1.7526 -0.2524 180) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value Conn_01x08_Male (at -3.5306 10.9982 180) (layer F.Fab)
+    (fp_text value Conn_01x08_Male (at -3.5306 10.9982 180) (layer F.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_circle (center 9.5 8.89) (end 15.15 8.89) (layer F.Fab) (width 0.12))
@@ -510,7 +510,7 @@
     )
   )
 
-  (module Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical (layer B.Cu) (tedit 59FED5CC) (tstamp 5D85FA2A)
+  (module Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical (layer B.Cu) (tedit 5DE97C2F) (tstamp 5D85FA2A)
     (at 134.62 104.14)
     (descr "Through hole straight pin header, 1x06, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x06 2.54mm single row")
@@ -518,7 +518,7 @@
     (fp_text reference J2 (at 1.397 2.286) (layer B.SilkS)
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
     )
-    (fp_text value Conn_01x06_Male (at 0 -15.03) (layer B.Fab)
+    (fp_text value Conn_01x06_Male (at 0 -15.03) (layer B.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
     )
     (fp_line (start -0.635 1.27) (end 1.27 1.27) (layer B.Fab) (width 0.1))
@@ -551,14 +551,14 @@
       (net 20 MOSI))
     (pad 6 thru_hole oval (at 0 -12.7) (size 1.7 1.7) (drill 1) (layers *.Cu *.Mask)
       (net 21 MISO))
-    (model ${KISYS3DMOD}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x06_P2.54mm_Vertical.wrl
+    (model ${KIPRJMOD}/../lib/Connector_PinHeader_2.54mm.3dshapes/PinHeader_Short_1x06_P2.54mm_Vertical.wrl
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
   )
 
-  (module Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical (layer B.Cu) (tedit 59FED5CC) (tstamp 5D89AE7C)
+  (module Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical (layer B.Cu) (tedit 5DE97C34) (tstamp 5D89AE7C)
     (at 134.62 81.28 180)
     (descr "Through hole straight pin header, 1x03, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x03 2.54mm single row")
@@ -566,7 +566,7 @@
     (fp_text reference J3 (at -1.016 2.159 180) (layer B.SilkS)
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
     )
-    (fp_text value Conn_01x03_Male (at 0 -7.41 180) (layer B.Fab)
+    (fp_text value Conn_01x03_Male (at 0 -7.41 180) (layer B.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
     )
     (fp_line (start -0.635 1.27) (end 1.27 1.27) (layer B.Fab) (width 0.1))
@@ -593,14 +593,14 @@
       (net 10 "Net-(J3-Pad2)"))
     (pad 3 thru_hole oval (at 0 -5.08 180) (size 1.7 1.7) (drill 1) (layers *.Cu *.Mask)
       (net 11 "Net-(J3-Pad3)"))
-    (model ${KISYS3DMOD}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x03_P2.54mm_Vertical.wrl
+    (model ${KIPRJMOD}/../lib/Connector_PinHeader_2.54mm.3dshapes/PinHeader_Short_1x03_P2.54mm_Vertical.wrl
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
   )
 
-  (module Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical (layer B.Cu) (tedit 59FED5CC) (tstamp 5D85FA58)
+  (module Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical (layer B.Cu) (tedit 5DE97C26) (tstamp 5D85FA58)
     (at 162.56 81.28 180)
     (descr "Through hole straight pin header, 1x03, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x03 2.54mm single row")
@@ -608,7 +608,7 @@
     (fp_text reference J4 (at 1.016 2.032 180) (layer B.SilkS)
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
     )
-    (fp_text value Conn_01x03_Male (at 0 -7.41 180) (layer B.Fab)
+    (fp_text value Conn_01x03_Male (at 0 -7.41 180) (layer B.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
     )
     (fp_text user %R (at 0 -2.54 90) (layer B.Fab)
@@ -635,7 +635,7 @@
       (net 13 "Net-(J4-Pad2)"))
     (pad 1 thru_hole rect (at 0 0 180) (size 1.7 1.7) (drill 1) (layers *.Cu *.Mask)
       (net 14 "Net-(J4-Pad1)"))
-    (model ${KISYS3DMOD}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x03_P2.54mm_Vertical.wrl
+    (model ${KIPRJMOD}/../lib/Connector_PinHeader_2.54mm.3dshapes/PinHeader_Short_1x03_P2.54mm_Vertical.wrl
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -930,7 +930,7 @@
     )
   )
 
-  (module Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical (layer B.Cu) (tedit 59FED5CC) (tstamp 5D89B459)
+  (module Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical (layer B.Cu) (tedit 5DE97C38) (tstamp 5D89B459)
     (at 162.56 91.44 180)
     (descr "Through hole straight pin header, 1x06, 2.54mm pitch, single row")
     (tags "Through hole pin header THT 1x06 2.54mm single row")
@@ -938,7 +938,7 @@
     (fp_text reference J5 (at 0 2.33 180) (layer B.SilkS)
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
     )
-    (fp_text value Conn_01x06_Male (at 0 -15.03 180) (layer B.Fab)
+    (fp_text value Conn_01x06_Male (at 0 -15.03 180) (layer B.Fab) hide
       (effects (font (size 1 1) (thickness 0.15)) (justify mirror))
     )
     (fp_line (start -0.635 1.27) (end 1.27 1.27) (layer B.Fab) (width 0.1))
@@ -971,7 +971,7 @@
       (net 36 A2))
     (pad 6 thru_hole oval (at 0 -12.7 180) (size 1.7 1.7) (drill 1) (layers *.Cu *.Mask)
       (net 37 CHG))
-    (model ${KISYS3DMOD}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x06_P2.54mm_Vertical.wrl
+    (model ${KIPRJMOD}/../lib/Connector_PinHeader_2.54mm.3dshapes/PinHeader_Short_1x06_P2.54mm_Vertical.wrl
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
@@ -1159,7 +1159,7 @@
   )
 
   (dimension 29.997411 (width 0.2) (layer F.Fab)
-    (gr_text "29.997 mm" (at 171.209905 92.680073 89.95148538) (layer F.Fab) (tstamp 5DC1B146)
+    (gr_text "29.997 mm" (at 171.209905 92.680073 89.95148538) (layer F.Fab)
       (effects (font (size 1 1) (thickness 0.2)))
     )
     (feature1 (pts (xy 161.544 107.6706) (xy 170.383627 107.678085)))
