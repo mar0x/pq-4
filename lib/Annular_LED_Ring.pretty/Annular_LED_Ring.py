@@ -24,7 +24,11 @@ body_height = 5
 led_height = 3
 top_height = 0.1
 
-pcb_depth = 5 # original value is 2.5
+# low profile value is 5
+# pcb_depth = 5
+
+# original value is 2.5
+pcb_depth = 2.5
 
 wp = cq.Workplane("XY").workplane(offset=0.0).moveTo(0.0, 0.0)
 
