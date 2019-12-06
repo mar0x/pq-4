@@ -62,4 +62,14 @@
   (pad "" smd rect (at 57.17 -5.08) (size 3 1) (layers F.Cu F.Mask F.Paste))
   (pad "" smd rect (at 57.17 -7.62) (size 3 1) (layers F.Cu F.Mask F.Paste))
 
+  (model ${KISYS3DMOD}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_2x10_P2.54mm_Vertical_SMD.wrl
+    (offset (xyz -1.27 -3.81 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
+  (model ${KISYS3DMOD}/Connector_PinSocket_2.54mm.3dshapes/PinSocket_2x10_P2.54mm_Vertical_SMD.wrl
+    (offset (xyz 59.69 -3.81 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
 )
