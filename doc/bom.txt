@@ -101,3 +101,18 @@
   https://www.terraelectronica.ru/product/322403
   2019.09.25 # 06664997
 
+- NCP1117ST50T3G, Стабилизатор напряжения, +5В, 1А [SOT-223]
+  x1
+  C&D # 9000118398
+  NCP1117ST50T3G
+  https://www.chipdip.ru/product/ncp1117st50t3g-2
+  2019.10.07 # 4984501
+
+- HS1D, Диод быстродействующий [SMA / DO-214AC]
+  x1
+  C&D # 9000023836
+  HS1D
+  https://www.chipdip.ru/product/hs1d
+  2019.10.07 # 4984501
+
+
