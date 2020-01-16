@@ -115,4 +115,10 @@
   https://www.chipdip.ru/product/hs1d
   2019.10.07 # 4984501
 
+- DB101S, Диодный мост 1A 50В [DB-1S]
+  x1
+  C&D # 9000065410
+  DB101S
+  https://www.chipdip.ru/product/db101s-df005s
+  2019.10.07 # 4984501
 
