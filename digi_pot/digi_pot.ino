@@ -61,17 +61,20 @@ struct enc_handler {
     void on_rotate(short dir, unsigned long t);
 
     void set_pos(int16_t pot) {
-        pos = pot2enc(pot);
-        err = pot - enc2pot(pos);
+        pos_ = pot2enc(pot);
+        err_ = pot - enc2pot(pos_);
     }
 
     int16_t get_pos() const {
-        return enc2pot(pos) + err;
+        return enc2pot(pos_) + err_;
     }
 
+    void ready() { ready_ = true; }
+
 private:
-    int8_t pos = ENC_CENTER;
-    int8_t err = 0;
+    int8_t pos_ = ENC_CENTER;
+    int8_t err_ = 0;
+    bool ready_ = false;
 
     static int8_t pot2enc(int16_t pot) {
         return (pot + POT2ENC_2) / POT2ENC;
@@ -102,7 +105,21 @@ enum {
     MODE_LEVEL = 2,
 };
 
+enum {
+    HIGHLIGHT_OFF = 0,
+    HIGHLIGHT_ON = 1,
+    HIGHLIGHT_AUTO = 255,
+};
+
+enum {
+    DIM_OFF = 1,
+    DIM_ON = 2,
+    DIM_AUTO = 255,
+};
+
 uint8_t mode = MODE_GAIN;
+uint8_t highlight_mode = HIGHLIGHT_AUTO;
+uint8_t dim_mode = DIM_AUTO;
 
 struct led_array {
     enum {
@@ -187,6 +204,7 @@ struct led_array {
 
         switch (mode) {
         case MODE_GAIN:
+        case MODE_LEVEL:
             mask = 0;
 
             if (b > 7) {
@@ -203,7 +221,7 @@ struct led_array {
         case MODE_FREQ:
             mask = 1 << b;
             break;
-
+/*
         case MODE_LEVEL:
             mask = 0;
 
@@ -211,6 +229,7 @@ struct led_array {
                 mask |= 1 << i;
             }
             break;
+*/
         }
 
         if (hlight) {
@@ -221,13 +240,17 @@ struct led_array {
     void highlight(bool h) {
         hlight = h;
 
-        brightness_a = h ? 1 : 2;
-
         if (h) {
             mask |= 0x8000;
         } else {
             mask &= ~0x8000;
         }
+    }
+
+    void dim(uint8_t d) {
+        if (d == 0) d = 1;
+
+        brightness_a = d;
     }
 
     unsigned long last_update = 0;
@@ -294,60 +317,108 @@ struct spi_pot {
 
 struct on_disable_highlight {
     void operator() (unsigned long /* t */) {
-        led_ring.highlight(false);
+        if (highlight_mode == HIGHLIGHT_AUTO) led_ring.highlight(false);
+        if (dim_mode == DIM_AUTO) led_ring.dim(2);
     }
 };
 
 artl::timer<on_disable_highlight> disable_highlight_timer;
 
 void enc_handler::on_rotate(short dir, unsigned long t) {
-    pos += dir;
-    err = 0;
+    if (!ready_) return;
 
-    if (pos > ENC_MAX) pos = ENC_MAX;
-    if (pos < ENC_MIN) pos = ENC_MIN;
+    pos_ += dir;
+    err_ = 0;
+
+    if (pos_ > ENC_MAX) pos_ = ENC_MAX;
+    if (pos_ < ENC_MIN) pos_ = ENC_MIN;
 
     int16_t pot = get_pos();
 
     spi_pot().set_pos(pot);
     led_ring.set_pos(pot);
 
-    led_ring.highlight(true);
+    if (highlight_mode == HIGHLIGHT_AUTO) led_ring.highlight(true);
+    if (dim_mode == DIM_AUTO) led_ring.dim(1);
+
     disable_highlight_timer.schedule(t + 2000);
 
     chg().output();
     chg().high();
 }
 
-void send_pos() {
-    int16_t pos = my_enc.get_pos();
+enum {
+    I2C_DIGIPOT_POS = 0,
+    I2C_DIGIPOT_CHG,
+    I2C_DIGIPOT_HLT,
+    I2C_DIGIPOT_DIM,
+};
 
-    uint8_t hi = (pos >> 8) & 0xFF;
-    uint8_t lo = pos & 0xFF;
+uint8_t i2c_reg = I2C_DIGIPOT_POS;
 
-    Wire.write(hi);
-    Wire.write(lo);
+void on_i2c_request() {
+    if (i2c_reg == I2C_DIGIPOT_POS) {
+        int16_t pos = my_enc.get_pos();
 
-    chg().input();
-    // led_ring.highlight(false);
+        uint8_t hi = (pos >> 8) & 0xFF;
+        uint8_t lo = pos & 0xFF;
+
+        Wire.write(hi);
+        Wire.write(lo);
+
+        chg().input();
+    }
+
+    if (i2c_reg == I2C_DIGIPOT_HLT) {
+        Wire.write(highlight_mode);
+    }
+
+    if (i2c_reg == I2C_DIGIPOT_DIM) {
+        Wire.write(dim_mode);
+    }
 }
 
-void recv_pos(int n) {
-    if (n != 2) { return; }
+void on_i2c_receive(int n) {
+    i2c_reg = Wire.read();
 
-    uint16_t hi = Wire.read();
-    uint16_t lo = Wire.read();
-    int16_t pos = (hi << 8) | lo;
+    if (i2c_reg == I2C_DIGIPOT_POS && n == 3) {
+        uint16_t hi = Wire.read();
+        uint16_t lo = Wire.read();
+        int16_t pos = (hi << 8) | lo;
 
-    if (pos < POT_MIN) pos = POT_MIN;
-    if (pos > POT_MAX) pos = POT_MAX;
+        if (pos < POT_MIN) pos = POT_MIN;
+        if (pos > POT_MAX) pos = POT_MAX;
 
-    my_enc.set_pos(pos);
-    spi_pot().set_pos(pos);
-    led_ring.set_pos(pos);
+        my_enc.set_pos(pos);
+        spi_pot().set_pos(pos);
+        led_ring.set_pos(pos);
 
-    chg().input();
-    // led_ring.highlight(false);
+        chg().input();
+    }
+
+    if (i2c_reg == I2C_DIGIPOT_CHG && n == 2) {
+        uint8_t v = Wire.read();
+
+        if (v != 0) {
+            chg().output();
+            chg().high();
+        } else {
+            chg().input();
+        }
+    }
+
+    if (i2c_reg == I2C_DIGIPOT_HLT && n == 2) {
+        highlight_mode = Wire.read();
+
+        led_ring.highlight(highlight_mode == HIGHLIGHT_ON);
+    }
+
+    if (i2c_reg == I2C_DIGIPOT_DIM && n == 2) {
+        dim_mode = Wire.read();
+
+        led_ring.dim(dim_mode == DIM_AUTO ? DIM_OFF : dim_mode);
+    }
+
 }
 
 uint8_t get_id() {
@@ -374,8 +445,8 @@ void setup() {
     uint8_t id = get_id();
 
     Wire.begin(id);
-    Wire.onRequest(send_pos);
-    Wire.onReceive(recv_pos);
+    Wire.onRequest(on_i2c_request);
+    Wire.onReceive(on_i2c_receive);
 
     switch (id) {
     case 0:
@@ -409,6 +480,28 @@ void setup() {
     spi_pot().enable();
 
     led_ring.set_pos(pos);
+
+    unsigned long start = millis();
+    unsigned long t = start;
+
+    my_enc.update(re_a().read(), re_b().read(), t);
+
+    do {
+        delay(1);
+        t = millis();
+        my_enc.update(re_a().read(), re_b().read(), t);
+    } while (t - start < enc_time_traits().bounce());
+
+    my_enc.ready();
+
+
+    if (highlight_mode == HIGHLIGHT_AUTO) led_ring.highlight(true);
+    if (dim_mode == DIM_AUTO) led_ring.dim(1);
+
+    disable_highlight_timer.schedule(t + 2000);
+
+    chg().output();
+    chg().high();
 }
 
 void loop() {
