@@ -1,6 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:digi_pot_eval_board-cache
-EELAYER 26 0
+EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -378,19 +377,6 @@ F 3 "" H 8550 6000 50  0001 C CNN
 	1    8550 6000
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:GND #PWR0125
-U 1 1 5D8CD6D8
-P 9450 6000
-F 0 "#PWR0125" H 9450 5750 50  0001 C CNN
-F 1 "GND" H 9455 5827 50  0000 C CNN
-F 2 "" H 9450 6000 50  0001 C CNN
-F 3 "" H 9450 6000 50  0001 C CNN
-	1    9450 6000
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8950 5000 9450 5000
 $Comp
 L power:+5V #PWR0126
 U 1 1 5D8CDA36
@@ -988,8 +974,6 @@ Wire Wire Line
 	6600 4000 6250 4000
 Wire Wire Line
 	6250 4000 6250 4600
-Wire Wire Line
-	9450 6000 9450 5000
 $Comp
 L Device:R R25
 U 1 1 5D9ED2C1
@@ -1115,4 +1099,19 @@ Wire Wire Line
 	7000 5650 7000 5600
 Wire Wire Line
 	6650 5750 6950 5750
+$Comp
+L power:+5V #PWR?
+U 1 1 5E2190E4
+P 9150 4900
+F 0 "#PWR?" H 9150 4750 50  0001 C CNN
+F 1 "+5V" H 9165 5073 50  0000 C CNN
+F 2 "" H 9150 4900 50  0001 C CNN
+F 3 "" H 9150 4900 50  0001 C CNN
+	1    9150 4900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8950 5000 9150 5000
+Wire Wire Line
+	9150 5000 9150 4900
 $EndSCHEMATC
