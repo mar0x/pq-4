@@ -43,9 +43,12 @@ ISR(TIMER1_COMPA_vect)
 #endif
 
 enum {
+    SPI_POT_MIN = 0,
+    SPI_POT_MAX = 256,
+
     POT_MIN = 0,
-    POT_MAX = 512,
-    POT_CENTER = POT_MAX / 2,
+    POT_MAX = SPI_POT_MAX * 2,
+    POT_CENTER = SPI_POT_MAX,
 };
 
 enum {
@@ -106,9 +109,9 @@ enum {
 };
 
 enum {
-    HIGHLIGHT_OFF = 0,
-    HIGHLIGHT_ON = 1,
-    HIGHLIGHT_AUTO = 255,
+    RED_DOT_OFF = 0,
+    RED_DOT_ON = 1,
+    RED_DOT_AUTO = 255,
 };
 
 enum {
@@ -118,7 +121,7 @@ enum {
 };
 
 uint8_t mode = MODE_GAIN;
-uint8_t highlight_mode = HIGHLIGHT_AUTO;
+uint8_t red_dot_mode = RED_DOT_AUTO;
 uint8_t dim_mode = DIM_AUTO;
 
 struct led_array {
@@ -232,13 +235,13 @@ struct led_array {
 */
         }
 
-        if (hlight) {
+        if (red_dot_state) {
             mask |= 0x8000;
         }
     }
 
-    void highlight(bool h) {
-        hlight = h;
+    void red_dot(bool h) {
+        red_dot_state = h;
 
         if (h) {
             mask |= 0x8000;
@@ -258,7 +261,7 @@ struct led_array {
     uint8_t brightness_a = 2;
     uint8_t brightness_b = 0;
     uint8_t frame = 0;
-    bool hlight = false;
+    bool red_dot_state = false;
 };
 
 led_array led_ring;
@@ -293,22 +296,26 @@ struct spi_pot {
         SPI.transfer(lo);
     }
 
+    static inline uint16_t pos2spi(uint16_t pos) {
+        return SPI_POT_MAX - pos;
+    }
+
     void set_pos(uint16_t pos) {
         cs().low();
 
         if (mode == MODE_GAIN) {
-            if (pos < 256) {
-                spi_transfer(0x00, pos);
-                spi_transfer(0x10, POT_MIN);
+            if (pos < POT_CENTER) {
+                spi_transfer(0x00, pos2spi(pos));
+                spi_transfer(0x10, pos2spi(SPI_POT_MIN));
             } else {
-                spi_transfer(0x00, POT_MAX);
-                spi_transfer(0x10, pos - 256);
+                spi_transfer(0x00, pos2spi(SPI_POT_MAX));
+                spi_transfer(0x10, pos2spi(pos - POT_CENTER));
             }
         } else {
             pos = pos / 2;
 
-            spi_transfer(0x00, pos);
-            spi_transfer(0x10, pos);
+            spi_transfer(0x00, pos2spi(pos));
+            spi_transfer(0x10, pos2spi(pos));
         }
 
         cs().high();
@@ -317,7 +324,7 @@ struct spi_pot {
 
 struct on_disable_highlight {
     void operator() (unsigned long /* t */) {
-        if (highlight_mode == HIGHLIGHT_AUTO) led_ring.highlight(false);
+        if (red_dot_mode == RED_DOT_AUTO) led_ring.red_dot(false);
         if (dim_mode == DIM_AUTO) led_ring.dim(2);
     }
 };
@@ -338,7 +345,7 @@ void enc_handler::on_rotate(short dir, unsigned long t) {
     spi_pot().set_pos(pot);
     led_ring.set_pos(pot);
 
-    if (highlight_mode == HIGHLIGHT_AUTO) led_ring.highlight(true);
+    if (red_dot_mode == RED_DOT_AUTO) led_ring.red_dot(true);
     if (dim_mode == DIM_AUTO) led_ring.dim(1);
 
     disable_highlight_timer.schedule(t + 2000);
@@ -350,7 +357,7 @@ void enc_handler::on_rotate(short dir, unsigned long t) {
 enum {
     I2C_DIGIPOT_POS = 0,
     I2C_DIGIPOT_CHG,
-    I2C_DIGIPOT_HLT,
+    I2C_DIGIPOT_RED_DOT,
     I2C_DIGIPOT_DIM,
 };
 
@@ -369,8 +376,8 @@ void on_i2c_request() {
         chg().input();
     }
 
-    if (i2c_reg == I2C_DIGIPOT_HLT) {
-        Wire.write(highlight_mode);
+    if (i2c_reg == I2C_DIGIPOT_RED_DOT) {
+        Wire.write(red_dot_mode);
     }
 
     if (i2c_reg == I2C_DIGIPOT_DIM) {
@@ -407,16 +414,16 @@ void on_i2c_receive(int n) {
         }
     }
 
-    if (i2c_reg == I2C_DIGIPOT_HLT && n == 2) {
-        highlight_mode = Wire.read();
+    if (i2c_reg == I2C_DIGIPOT_RED_DOT && n == 2) {
+        red_dot_mode = Wire.read();
 
-        led_ring.highlight(highlight_mode == HIGHLIGHT_ON);
+        led_ring.red_dot(red_dot_mode == RED_DOT_ON);
     }
 
     if (i2c_reg == I2C_DIGIPOT_DIM && n == 2) {
         dim_mode = Wire.read();
 
-        led_ring.dim(dim_mode == DIM_AUTO ? DIM_OFF : dim_mode);
+        led_ring.dim(dim_mode == DIM_AUTO ? (uint8_t) DIM_OFF : dim_mode);
     }
 
 }
@@ -466,7 +473,6 @@ void setup() {
     // 8 000 000 / presc / ocra = 200 updates per second
     // presc = 64
     // ocra = 8000000 / 200 / presc = 62.5
-
     led_update_tc().setup(0, 0, 4, led_update_tc::cs::presc_64);
     led_update_tc().ocra() = 62;
     led_update_tc().cnt() = 0;
@@ -495,7 +501,7 @@ void setup() {
     my_enc.ready();
 
 
-    if (highlight_mode == HIGHLIGHT_AUTO) led_ring.highlight(true);
+    if (red_dot_mode == RED_DOT_AUTO) led_ring.red_dot(true);
     if (dim_mode == DIM_AUTO) led_ring.dim(1);
 
     disable_highlight_timer.schedule(t + 2000);
