@@ -251,25 +251,25 @@ F 3 "" H 7100 3000 50  0001 C CNN
 	1    7100 3000
 	1    0    0    -1  
 $EndComp
-Text GLabel 4950 1650 0    50   Input ~ 0
+Text GLabel 4950 1650 0    50   BiDi ~ 0
 SDA
 Text GLabel 4950 1750 0    50   Input ~ 0
 SCL
-Text GLabel 3300 1650 0    50   Input ~ 0
+Text GLabel 3300 1650 0    50   BiDi ~ 0
 SDA
 Text GLabel 3300 1750 0    50   Input ~ 0
 SCL
 Text GLabel 1650 1750 0    50   Input ~ 0
 SCL
-Text GLabel 1650 1650 0    50   Input ~ 0
+Text GLabel 1650 1650 0    50   BiDi ~ 0
 SDA
-Text GLabel 1650 3750 0    50   Input ~ 0
+Text GLabel 1650 3750 0    50   BiDi ~ 0
 SDA
-Text GLabel 3300 3750 0    50   Input ~ 0
+Text GLabel 3300 3750 0    50   BiDi ~ 0
 SDA
-Text GLabel 4950 3750 0    50   Input ~ 0
+Text GLabel 4950 3750 0    50   BiDi ~ 0
 SDA
-Text GLabel 6600 3750 0    50   Input ~ 0
+Text GLabel 6600 3750 0    50   BiDi ~ 0
 SDA
 Text GLabel 6600 3850 0    50   Input ~ 0
 SCL
@@ -647,19 +647,19 @@ Wire Wire Line
 	4050 5350 4100 5350
 Wire Wire Line
 	4100 5350 4100 5300
-Text GLabel 1650 2250 0    50   Input ~ 0
+Text GLabel 1650 2250 0    50   Output ~ 0
 CHG
-Text GLabel 1650 4350 0    50   Input ~ 0
+Text GLabel 1650 4350 0    50   Output ~ 0
 CHG
-Text GLabel 3300 2250 0    50   Input ~ 0
+Text GLabel 3300 2250 0    50   Output ~ 0
 CHG
-Text GLabel 4950 2250 0    50   Input ~ 0
+Text GLabel 4950 2250 0    50   Output ~ 0
 CHG
-Text GLabel 4950 4350 0    50   Input ~ 0
+Text GLabel 4950 4350 0    50   Output ~ 0
 CHG
-Text GLabel 3300 4350 0    50   Input ~ 0
+Text GLabel 3300 4350 0    50   Output ~ 0
 CHG
-Text GLabel 6600 4350 0    50   Input ~ 0
+Text GLabel 6600 4350 0    50   Output ~ 0
 CHG
 $Comp
 L power:GND #PWR0164

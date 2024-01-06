@@ -746,7 +746,7 @@ F 3 "~" H 3600 5450 50  0001 C CNN
 	1    3600 5450
 	1    0    0    -1  
 $EndComp
-Text GLabel 3550 5150 2    50   Input ~ 0
+Text GLabel 3550 5150 2    50   Output ~ 0
 RX
 $Comp
 L power:GND #PWR0158
@@ -859,7 +859,7 @@ F 3 "" H 5100 5600 50  0001 C CNN
 $EndComp
 Text GLabel 5650 3450 2    50   Input ~ 0
 SCL
-Text GLabel 5100 3450 2    50   Input ~ 0
+Text GLabel 5100 3450 2    50   BiDi ~ 0
 SDA
 $Comp
 L Device:R R14
@@ -933,7 +933,7 @@ Text GLabel 9500 3600 2    50   Input ~ 0
 SW_BYPASS
 Text GLabel 9500 3800 2    50   Input ~ 0
 SW_STORE
-Text GLabel 5650 3650 2    50   Input ~ 0
+Text GLabel 5650 3650 2    50   Output ~ 0
 CHG
 $Comp
 L Device:R R26
