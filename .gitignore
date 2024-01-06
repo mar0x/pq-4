@@ -1,6 +1,10 @@
 *.bak
 *.kicad_pcb-bak
-.DS_Store
+*.sch-bak
+**/.DS_Store
 *.net
 *-cache.lib
 __pycache__
+**/fp-info-cache
+*-backups
+*.bak
