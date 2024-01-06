@@ -115,6 +115,13 @@
   https://www.chipdip.ru/product/hs1d
   2019.10.07 # 4984501
 
+- PBD-20 (2X10) smd, DS1023-11-2*10B8XBS, Разъем
+  x11
+  C&D # 8603235609
+  PBD-20 (2X10) smd
+  https://www.chipdip.ru/product1/8603235609
+  2019.09.27 # 4960283 https://www.chipdip.ru/order/detail/4960283
+
 - DB101S, Диодный мост 1A 50В [DB-1S]
   x1
   C&D # 9000065410
@@ -122,3 +129,12 @@
   https://www.chipdip.ru/product/db101s-df005s
   2019.10.07 # 4984501
 
+- Phone Jack 6.3 stereo, PCB mount, iron frame
+  x2
+  Aliexpress
+  Noname, OOTDTY ?, HLJ0544-01-010 ?
+  https://aliexpress.ru/item/32973696420.html
+  2019.09.30 # 8003284014042510
+
+
+  
