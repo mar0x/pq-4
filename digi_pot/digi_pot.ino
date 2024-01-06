@@ -44,7 +44,7 @@ ISR(TIMER1_COMPA_vect)
 
 enum {
     SPI_POT_MIN = 0,
-    SPI_POT_MAX = 256,
+    SPI_POT_MAX = 255,
 
     POT_MIN = 0,
     POT_MAX = SPI_POT_MAX * 2,
@@ -288,37 +288,38 @@ struct spi_pot {
         shdn().high();
     }
 
-    void spi_transfer(uint8_t cmd, uint16_t pos) {
-        uint8_t hi = (pos >> 8) & 0x01;
-        uint8_t lo = pos & 0xFF;
+    void spi_transfer(uint8_t cmd, uint8_t pos) {
+        // uint8_t hi = (cmd << 7) | (pos >> 1);
+        // uint8_t lo = (pos << 7);
 
-        SPI.transfer(cmd | hi);
-        SPI.transfer(lo);
+        cs().low();
+
+        SPI.transfer(cmd);
+        SPI.transfer(pos);
+
+        cs().high();
     }
 
-    static inline uint16_t pos2spi(uint16_t pos) {
+    static inline uint8_t pos2spi(uint8_t pos) {
         return SPI_POT_MAX - pos;
     }
 
     void set_pos(uint16_t pos) {
-        cs().low();
 
         if (mode == MODE_GAIN) {
             if (pos < POT_CENTER) {
                 spi_transfer(0x00, pos2spi(pos));
-                spi_transfer(0x10, pos2spi(SPI_POT_MIN));
+                spi_transfer(0x01, pos2spi(SPI_POT_MIN));
             } else {
                 spi_transfer(0x00, pos2spi(SPI_POT_MAX));
-                spi_transfer(0x10, pos2spi(pos - POT_CENTER));
+                spi_transfer(0x01, pos2spi(pos - POT_CENTER));
             }
         } else {
             pos = pos / 2;
 
             spi_transfer(0x00, pos2spi(pos));
-            spi_transfer(0x10, pos2spi(pos));
+            spi_transfer(0x01, pos2spi(pos));
         }
-
-        cs().high();
     }
 };
 
