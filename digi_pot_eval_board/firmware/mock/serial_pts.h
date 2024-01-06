@@ -36,7 +36,9 @@ struct serial_pts {
         }
 
         if (res > 0) {
+            log_window::println("poll() res: ", (int) res);
             ssize_t rr = ::read(pts_, read_buf, sizeof(read_buf));
+            log_window::println("poll() read: ", (int) rr);
             if (rr <= 0) {
                 open_pts();
                 return false;
@@ -53,6 +55,7 @@ struct serial_pts {
     }
 
     void print(const char* str) { write(str, strlen(str)); }
+    void print(char c) { write(&c, 1); }
     void print(int n) {
         char buf[50];
         int s = snprintf(buf, sizeof(buf), "%d", n);
@@ -60,6 +63,7 @@ struct serial_pts {
     }
 
     void println(const char* str) { print(str); write("\r\n", 2); }
+    // void println(char c) { char buf[3]; buf[0] = c; buf[1] = '\r'; buf[2] = '\n'; write(buf, 3); }
     void println(int n) { print(n); write("\r\n", 2); }
 
     void simulate(const void* data, int s) {

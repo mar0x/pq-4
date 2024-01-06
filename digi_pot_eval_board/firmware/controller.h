@@ -59,7 +59,7 @@ struct controller {
 
     enum {
         MIN_CURSOR_POS = 4,
-        MAX_CURSOR_POS = 15,
+        MAX_CURSOR_POS = 16,
     };
 
     controller();
@@ -71,7 +71,7 @@ struct controller {
     void reset_eeprom();
 
     void process_midi_cmd();
-    void process_serial_cmd();
+    void process_serial_cmd(unsigned long);
     void midi_out(const midi_cmd& cmd);
 
     void set_program(uint8_t prog);
@@ -361,7 +361,7 @@ controller::loop() {
     }
 
     if (serial_cmd_) {
-        process_serial_cmd();
+        process_serial_cmd(t);
     }
 
     in_.update(t, enable_input_);
@@ -516,21 +516,32 @@ controller::process_midi_cmd() {
 }
 
 inline void
-controller::process_serial_cmd() {
+controller::process_serial_cmd(unsigned long t) {
     out_.serial_println("");
 
     // out_.serial_println(serial_cmd_.buf_);
 
-    if (serial_cmd_.command() == serial_cmd::CMD_VERSION) {
+    switch (serial_cmd_.command()) {
+    case serial_cmd::CMD_VERSION:
         out_.serial_println("V ", PQ4_VERSION);
+        break;
+
+    case serial_cmd::CMD_HELP: {
+        out_.serial_println("help size is ", sizeof(help_));
+        for (uint16_t i = 0; i < sizeof(help_); ++i) {
+            char b = pgm_read_byte_near(help_ + i);
+            out_.serial_print(b);
+        }
+        break;
     }
-    if (serial_cmd_.command() == serial_cmd::CMD_PROG_CHANGE) {
+    case serial_cmd::CMD_PROG_CHANGE: {
         uint8_t p;
         if (serial_cmd_.get_arg(1, p)) { set_program(p); }
 
         out_.serial_println("PC ", prog_id_);
+        break;
     }
-    if (serial_cmd_.command() == serial_cmd::CMD_CTRL_CHANGE) {
+    case serial_cmd::CMD_CTRL_CHANGE: {
         uint8_t c = 0, v = 0;
         if (serial_cmd_.get_arg(1, c) &&
             serial_cmd_.get_arg(2, v)) {
@@ -542,27 +553,53 @@ controller::process_serial_cmd() {
         }
 
         out_.serial_println("CC ", c, " ", v);
+        break;
     }
-    if (serial_cmd_.command() == serial_cmd::CMD_POT) {
-        uint8_t l = 0;
+    case serial_cmd::CMD_POT: {
+        uint8_t t = 0;
         uint16_t v = 0;
-        if (serial_cmd_.get_arg(1, l) &&
-            serial_cmd_.get_arg(2, v)) { set_pot(l, v); }
+        if (serial_cmd_.get_arg(1, t) &&
+            serial_cmd_.get_arg(2, v)) { set_pot(t, v); }
 
-        out_.serial_println("PT ", l, " ", program_.pot[l]);
+        if (t >= MAX_POT) t = MAX_POT - 1;
+
+        out_.serial_println("PT ", t, " ", program_.pot[t]);
+        break;
     }
-    if (serial_cmd_.command() == serial_cmd::CMD_STORE) {
+    case serial_cmd::CMD_NAME: {
+        serial_cmd_.get_arg(1, program_.title);
+
+        if (mode_ == MODE_NORMAL) {
+            memcpy(lcd_buf[0] + 4, program_.title, 12);
+
+            hide_cursor();
+
+            lcd_update(0, 0, LCD_COLUMNS);
+        }
+
+        out_.serial_println("NM ", program_.title);
+        break;
+    }
+    case serial_cmd::CMD_MODE: {
+        uint8_t m;
+        if (serial_cmd_.get_arg(1, m)) { set_mode(m, t); }
+
+        out_.serial_println("MD ", mode_);
+        break;
+    }
+    case serial_cmd::CMD_STORE: {
         if (!dirty_) { out_.serial_println("CLEAR"); }
         else if (bad_magic_) { out_.serial_println("BAD MAGIC"); }
-        else { commit(millis()); }
+        else { commit(t); }
 
         out_.serial_print("PR ", prog_id_, " ", program_.pot[0]);
         for (uint8_t i = 1; i < MAX_POT; i++) {
             out_.serial_print(",", program_.pot[i]);
         }
         out_.serial_println(" \"", program_.title, "\"");
+        break;
     }
-    if (serial_cmd_.command() == serial_cmd::CMD_RESTORE) {
+    case serial_cmd::CMD_RESTORE: {
         if (!dirty_) { out_.serial_println("CLEAR"); }
         else { set_program(prog_id_); }
 
@@ -571,9 +608,87 @@ controller::process_serial_cmd() {
             out_.serial_print(",", program_.pot[i]);
         }
         out_.serial_println(" \"", program_.title, "\"");
+        break;
     }
-    if (serial_cmd_.command() == serial_cmd::CMD_PROGRAM) {
+    case serial_cmd::CMD_BYPASS: {
+        uint8_t b;
+        if (serial_cmd_.get_arg(1, b)) { bypass(0, b); }
+
+        out_.serial_println("BP ", bypass_);
+        break;
+    }
+    case serial_cmd::CMD_PROGRAM: {
         // TODO
+        break;
+    }
+    case serial_cmd::CMD_MIDI_CHANNEL: {
+        uint8_t c;
+        if (serial_cmd_.get_arg(1, c)) {
+            c = c % 16;
+            if (mode_ == MODE_SETTINGS_CHANNEL) {
+                edit_value_ = edit_value_master_ = c + 1;
+
+                print_edit_value();
+                set_dirty(false);
+
+                lcd_update(13, 1, 3);
+            }
+
+            settings_.midi_channel = c;
+            settings_.write(settings_.midi_channel);
+        }
+
+        out_.serial_println("MC ", settings_.midi_channel);
+        break;
+    }
+    case serial_cmd::CMD_MIDI_PROG_OUT: {
+        // TODO
+        out_.serial_println("MO ", settings_.midi_out_prog);
+        break;
+    }
+    case serial_cmd::CMD_MIDI_FORWARD: {
+        // TODO
+        out_.serial_println("MF ", settings_.midi_fwd);
+        break;
+    }
+    case serial_cmd::CMD_DEBUG_LEVEL: {
+        // TODO
+        out_.serial_println("DL ", settings_.usb_debug);
+        break;
+    }
+    case serial_cmd::CMD_HIDE_CURSOR_DELAY: {
+        // TODO
+        out_.serial_println("HC ", settings_.hide_cursor_delay_s);
+        break;
+    }
+    case serial_cmd::CMD_FACTORY_RESET: {
+        set_mode(MODE_SETTINGS_FACTORY_RESET, t);
+        break;
+    }
+    case serial_cmd::CMD_MIDI_POT_IN_CTRL: {
+        // TODO
+        break;
+    }
+    case serial_cmd::CMD_MIDI_POT_OUT_CTRL: {
+        // TODO
+        break;
+    }
+    case serial_cmd::CMD_MIDI_MON_IN: {
+        // TODO
+        break;
+    }
+    case serial_cmd::CMD_MIDI_MON_OUT: {
+        // TODO
+        break;
+    }
+    case serial_cmd::CMD_HEX: {
+        // TODO
+        break;
+    }
+    }
+
+    if (mode_ == MODE_NORMAL) {
+        set_dirty(program_ != program_master_);
     }
 
     serial_cmd_.reset();
@@ -598,6 +713,8 @@ controller::midi_out(const midi_cmd& cmd) {
 inline void
 controller::set_program(uint8_t prog) {
     debug(1, "set_program: ", prog_id_, " -> ", prog);
+
+    if (prog >= MAX_PROGRAMS) return;
 
     prog_id_ = prog;
 
@@ -640,8 +757,10 @@ inline void
 controller::set_pot(uint8_t i, uint16_t v) {
     debug(1, "set_pot: ", i, " ", program_.pot[i], " -> ", v);
 
+    if (i >= MAX_POT || v > MAX_POT_VALUE) return;
+
     pot_[i].value(v);
-    update_pot_relay(i, program_.pot[i]);
+    update_pot_relay(i, v);
 
     // send controller change MIDI command if configured
     send_pot(i, v);
@@ -774,6 +893,7 @@ controller::on_down(uint8_t i, bool down, unsigned long t) {
         // move cursor LEFT
         if (i == LEFT && in_.right().up()) {
             cursor_pos_ = rotate(cursor_pos_, MIN_CURSOR_POS, MAX_CURSOR_POS, -1);
+            hide_hint();
             show_cursor(t);
 
             return;
@@ -782,6 +902,7 @@ controller::on_down(uint8_t i, bool down, unsigned long t) {
         // move cursor RIGHT
         if (i == RIGHT && in_.left().up()) {
             cursor_pos_ = rotate(cursor_pos_, MIN_CURSOR_POS, MAX_CURSOR_POS, 1);
+            hide_hint();
             show_cursor(t);
 
             return;

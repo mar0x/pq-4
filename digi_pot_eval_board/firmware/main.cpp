@@ -17,6 +17,11 @@ WINDOW *bp_win;
 
 int random(int) { return 0; }
 
+#define PROGMEM
+#define pgm_read_word
+#define pgm_read_byte_near(p) (*(p))
+#define strcpy_P strcpy
+
 #include "mock/serial.h"
 
 #include "config.h"
@@ -28,8 +33,6 @@ int random(int) { return 0; }
 #include "mock/liquid_crystal.h"
 #include "mock/in.h"
 #include "mock/out.h"
-
-#include "mock/io.h"
 
 #include "mock/log_window.h"
 WINDOW *log_window::win;

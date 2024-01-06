@@ -28,11 +28,11 @@ struct out {
 
     void midi_write(const void* buf, int s) { Serial1.write((const char*) buf, s); }
 
-    void bypass_relay(bool v) { bypass_relay_out().write(v); }
-    void mid_relay(bool v) { mid_relay_out().write(v); }
-    void hi_relay(bool v) { hi_relay_out().write(v); }
-    void low_relay(bool v) { low_relay_out().write(v); }
-    void presence_relay(bool v) { presence_relay_out().write(v); }
+    void bypass_relay(bool v) { /* bypass_relay_out().write(v); */ }
+    void mid_relay(bool v) { /* mid_relay_out().write(v); */ }
+    void hi_relay(bool v) { /* hi_relay_out().write(v); */ }
+    void low_relay(bool v) { /* low_relay_out().write(v); */ }
+    void presence_relay(bool v) { /* presence_relay_out().write(v); */ }
 
 #if 0
 #if defined(DEBUG)
