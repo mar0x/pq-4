@@ -1,4 +1,0 @@
-(fp_lib_table
-  (lib (name orig_pcb)(type KiCad)(uri ${KIPRJMOD}/lib/orig_pcb.pretty)(options "")(descr ""))
-  (lib (name Capactor_w)(type KiCad)(uri ${KIPRJMOD}/lib/Capactor_w.pretty)(options "")(descr ""))
-)
