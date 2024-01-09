@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "ad5262")(type "Legacy")(uri "${KIPRJMOD}/../lib/ad5262.lib")(options "")(descr ""))
+  (lib (name "adg1634")(type "KiCad")(uri "/Users/max_romanov/projects/pq-4/lib/adg1634.kicad_sym")(options "")(descr ""))
+)
